@@ -1,5 +1,6 @@
 package com.Leo.Project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -19,6 +20,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore // quando usado em User no momento que solicirar as ordens os usuarios açociados tb iram aparecer e se o @JsonIgnore for posto em Order o e vc buscar os clientes iram aparecer tb os pedidos que esse cliente fez
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
