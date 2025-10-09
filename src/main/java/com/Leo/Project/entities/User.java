@@ -11,6 +11,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable {
+    private static final long serialVersion = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

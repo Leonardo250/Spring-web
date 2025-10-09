@@ -1,8 +1,10 @@
 package com.Leo.Project.config;
 
+import com.Leo.Project.entities.Category;
 import com.Leo.Project.entities.Order;
 import com.Leo.Project.entities.User;
 import com.Leo.Project.entities.enums.OrderStatus;
+import com.Leo.Project.repositories.CategoryRepository;
 import com.Leo.Project.repositories.OrderRepository;
 import com.Leo.Project.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,17 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public void run(String... args) throws Exception {
+        Category cat1 = new Category(null,"Eletronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null,"Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
+
         User u1 = new User("Maria Brown", "Maria@gmail.com","219665874","123456");
         User u2 = new User("Alex Green", "alex@gmail.com", "219887463","123456");
 
