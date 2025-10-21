@@ -1,8 +1,10 @@
 package com.Leo.Project.entities;
 
 import com.Leo.Project.entities.pk.Orderitempk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
@@ -14,7 +16,7 @@ public class OrderItem implements Serializable {
     private static final long serialVersion = 1L;
 
     @EmbeddedId
-    private Orderitempk id;
+    private Orderitempk id = new Orderitempk(); // sempre que criar uma classe auxiliar pque o id composto vc deve instanciar o id
 
     private  int quatity;
     private  double price;
@@ -30,6 +32,7 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder(){
        return id.getOrder();
     }
