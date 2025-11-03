@@ -2,6 +2,7 @@ package com.Leo.Project.services;
 import java.util.Optional;
 import com.Leo.Project.entities.User;
 import com.Leo.Project.repositories.UserRepository;
+import com.Leo.Project.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
 
     public User findByID(Long id){
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(()-> new ResourceNotFoundException(id));
     }
 
     public User insert(User obj){
